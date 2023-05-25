@@ -1,0 +1,48 @@
+function revStr(str){
+  let newStr='';
+  str=str.split(",")
+  for (let i=str.length-1;i>-1;i--){
+    newStr+=str[i];
+  }
+  return newStr;
+}
+function palindrome(str) {
+  str=str.split(/(?:\s|_|\.|,|\/|-|\(|\))/).join("").toLowerCase().split("");
+  console.log(str);
+  let left='';
+  let right=''
+
+  if (str.length%2===1){
+    let middle=Math.floor((str.length)/2);
+    left+=str.slice(0,middle);
+    left=left.split(",").join("");
+    right+=str.slice(middle+1);
+    console.log(left,right);
+    if (str.length<=3){
+      if (left===right){
+        return true;
+      }
+      return false
+    }else{
+      right=revStr(right);
+      if (left===right){
+        return true;
+      }
+      return false;
+    }
+  }else{
+    let middle=(str.length)/2;
+    left+=str.slice(0,middle);
+    right+=str.slice(middle);
+    left=left.split(",").join("");
+    right=revStr(right);
+    console.log(left,right);
+    if (left===right){
+      return true;
+    }
+    return false;
+
+  }
+}
+
+console.log(palindrome("0_0 (: /-\ :) 0-0"));
